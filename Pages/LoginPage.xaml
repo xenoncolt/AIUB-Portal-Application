@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:AIUB.Portal.Behaviors"
+             x:Class="AIUB.Portal.Pages.LoginPage"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TitleColor="Transparent"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Transparent"
+             Title="LoginPage">
+
+    <Shell.BackgroundColor>
+        <Color>Transparent</Color>
+    </Shell.BackgroundColor>
+
+    <Grid BackgroundColor="#202C59">
+        <Grid Padding="20">
+            <Border StrokeShape="RoundRectangle 20" 
+                    Margin="20,40" 
+                    BackgroundColor="#86C6F3" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="350">
+                <Border.Shadow>
+                    <Shadow Brush="#000000" Radius="20" Opacity="0.2" Offset="0,10"/>
+                </Border.Shadow>
+                <StackLayout Padding="20" Spacing="15">
+                    <Label Text="Welcome to AIUB Portal" Margin="0,0,0,20" FontSize="Title" HorizontalOptions="Center" TextColor="#000000"/>
+                    <Entry x:Name="UsernameEntry" Keyboard="Telephone" Placeholder="Username" Margin="0,10,0,0" PlaceholderColor="DimGrey" TextChanged="Entry_TextChanged">
+                        <Entry.Behaviors>
+                            <behaviors:EntryAnimation From="0" To="5" Duration="800" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Password" Margin="0,10,0,0" PlaceholderColor="DimGrey" TextChanged="Entry_TextChanged">
+                        <Entry.Behaviors>
+                            <behaviors:EntryAnimation From="0" To="5" Duration="1000" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <ActivityIndicator x:Name="LoginIndicator" IsVisible="False" IsRunning="False"/>
+                    <Button x:Name="LoginButton" Text="Login" BackgroundColor="#2A67ED" TextColor="#FFFFFF" CornerRadius="10" HeightRequest="50" Margin="0,20,0,10" Clicked="Login_Button_Clicked">
+                        <Button.Behaviors>
+                            <behaviors:ButtonAnimation Duration="500"/>
+                        </Button.Behaviors>
+                    </Button>
+                </StackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+    <!--<StackLayout Padding="30" Spacing="10" VerticalOptions="Center">
+        <Label Text="Welcome to AIUB Portal" FontSize="Header" HorizontalOptions="Center"/>
+        <Entry x:Name="UsernameEntry" Keyboard="Telephone" Placeholder="Username"/>
+        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Password"/>
+        <Button Text="Login" Clicked="Button_Clicked"/>
+    </StackLayout> -->
+</ContentPage>
