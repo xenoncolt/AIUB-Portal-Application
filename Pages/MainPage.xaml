@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AIUB.Portal.Pages.MainPage"
              Title="Dashboard">
-    
-    <VerticalStackLayout>
-        <Label Text="Welcome to AIUB sample Dashboard" Margin="0,0,0,20" FontSize="Large" HorizontalOptions="Center"/>
-        <Button Text="Logout" 
+
+    <RefreshView x:Name="RefreshView" RefreshColor="#2A67ED" Refreshing="RefreshView_Refreshing">
+        <VerticalStackLayout>
+            <Label Text="Welcome to AIUB sample Dashboard" Margin="0,0,0,20" FontSize="Large" HorizontalOptions="Center"/>
+            <Button Text="Logout" 
                 Clicked="Logout_Button_Clicked"
                 BackgroundColor="#524949" 
                 TextColor="#FFFFFF" 
@@ -15,7 +16,8 @@
                 HorizontalOptions="Center" 
                 WidthRequest="200" 
                 Margin="0,40,0,0">
-        </Button>
-    </VerticalStackLayout>
+            </Button>
+        </VerticalStackLayout>
+    </RefreshView>
 
 </ContentPage>

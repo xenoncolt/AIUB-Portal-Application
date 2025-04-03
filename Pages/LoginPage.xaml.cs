@@ -112,9 +112,9 @@ public partial class LoginPage : ContentPage
             LoginButton.IsVisible = false;
 
             // Perform login using the portal
-            var (success, msg, result) = await _portalService.LoginAsync(username, password);
+            var loginResult = await _portalService.LoginAsync(username, password);
 
-            if (success)
+            if (loginResult.success)
             {
                 // Store user credentials in secure storage
                 await SecureStorage.SetAsync("username", username);
@@ -128,10 +128,18 @@ public partial class LoginPage : ContentPage
                 {
                     Application.Current.Windows[0].Page = new AppShell();
                 }
+            } else if (!string.IsNullOrEmpty(loginResult.captchaImageUrl))
+            {
+                // Captcha handling
+                LoginIndicator.IsVisible = false;
+                LoginIndicator.IsRunning = false;
+                LoginButton.IsVisible = true;
+
+                await Navigation.PushModalAsync(new CaptchaPage(_portalService, username, password, loginResult.captchaImageUrl, loginResult.captchaId));
             } else
             {
                 // Show error message
-                await DisplayAlert("Error", msg, "OK");
+                await DisplayAlert("Error", loginResult.msg, "OK");
 
                 LoginIndicator.IsVisible = false;
                 LoginIndicator.IsRunning = false;
